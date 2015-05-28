@@ -117,7 +117,7 @@ void Tween::stop() {
   _tween.time = 0;
 }
 
-bool Tween::isActive() {
+bool Tween::isRunning() {
   return _delay.state != 0 || _tween.state != 0 ? true : false;
 }
 bool Tween::isFinished() {

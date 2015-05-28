@@ -81,8 +81,8 @@ public:
   void pause();
   void stop();
 
-  bool isActive();
-  bool finished();
+  bool isRunning();
+  bool isFinished();
 
   void update();
 
