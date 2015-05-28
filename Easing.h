@@ -63,7 +63,7 @@ class Easing {
   static float SineEaseInOut(float t,float b , float c, float d);
 
   // breathe
-  static float BreatheIn(float t,float b , float c, float d);
-  // static float BreatheOut(float t,float b , float c, float d);
-  // static float BreatheInOut(float t,float b , float c, float d);
+  static float BreatheEaseIn(float t,float b , float c, float d);
+  static float BreatheEaseOut(float t,float b , float c, float d);
+  static float BreatheEaseInOut(float t,float b , float c, float d);
 };

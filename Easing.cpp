@@ -194,13 +194,19 @@ float Easing::SineEaseOut(float t, float b , float c, float d) {
 }
 
 float Easing::SineEaseInOut(float t, float b , float c, float d) {
-  return -c/2 * (cos(M_PI*t/d) - 1) + b;
+  return -c/2 * (cos(t/d * M_PI) - 1) + b;
 }
 
 // breathe
-float Easing::BreatheIn(float t, float b , float c, float d) {
-  // f(x) = (exp(sin(x)) - 1/e ) * 255 / (e - 1/e)
-  // min 0 at x = -π/2 + 2nπ
-  // max 255 at x = π/2 + 2nπ
-  return (exp(sin(t * M_PI / d - M_PI / 2)) - 0.36787944) * c / 2.35040238 + b;
+// f(x) = (exp(sin(x)) - 1/e ) * 255 / (e - 1/e)
+// min 0 at x = -π/2 + 2nπ
+// max 255 at x = π/2 + 2nπ
+float Easing::BreatheEaseIn(float t, float b , float c, float d) {
+  return -c * (exp(cos(t / d * M_PI)) - 0.36787944) / 2.35040238 + c + b;
+}
+float Easing::BreatheEaseOut(float t, float b , float c, float d) {
+  return c * (exp(sin(t / d * M_PI - M_PI / 2)) - 0.36787944) / 2.35040238 + b;
+}
+float Easing::BreatheEaseInOut(float t, float b , float c, float d) {
+  return -c / 2 * ((exp(cos(t / d * 2 * M_PI)) - 0.36787944) / 2.35040238 - 1) + b;
 }
