@@ -229,3 +229,11 @@ float Easing::SineEaseInOut(float t, float b , float c, float d)
 {
 	return -c/2 * (cos(M_PI*t/d) - 1) + b;
 }
+
+// breathe
+float Easing::BreatheIn(float t, float b , float c, float d) {
+  // f(x) = (exp(sin(x)) - 1/e ) * 255 / (e - 1/e)
+  // min 0 at x = -π/2 + 2nπ
+  // max 255 at x = π/2 + 2nπ
+  return (exp(sin(t * M_PI / d - M_PI / 2)) - 0.36787944) * c / 2.35040238 + b;
+}
