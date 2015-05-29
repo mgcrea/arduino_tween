@@ -15,25 +15,30 @@ public:
   unsigned int loop, count;
 
   TweenTimer() {
+    loop = 0;
+    reset(0.0);
+  }
+
+  void reset(float _duration) {
+    duration = _duration;
     reset();
   }
 
   void reset() {
     created = millis();
     count = 0;
-    loop = 0;
     time = 0.0;
-    duration = 0.0;
     state = 0;
   }
 
   void tick() {
 
-    int ctime = millis();
-
     if(state == 0) {
       return;
-    } else if(state == 1) {
+    }
+
+    int ctime = millis();
+    if(state == 1) {
       time = ctime - created;
     } else if(state == -1) {
       time = (created + duration) - ctime;
@@ -49,7 +54,7 @@ public:
       } else if(loop == 1) {
         time = 0;
         state = 1;
-      } else if(loop == 2) {
+      } else if(loop >= 2) {
         state = -1;
       }
     } else if(time < 0) {
@@ -85,8 +90,10 @@ public:
   bool isFinished();
 
   void update();
+  int getCount();
+  void debug();
 
-  float num;
+  float value;
   float percent;
 
 private:
