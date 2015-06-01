@@ -1,0 +1,3 @@
+*.o
+test/CatchTest
+.DS_Store
